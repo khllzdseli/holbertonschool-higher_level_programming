@@ -1,0 +1,91 @@
+===========================
+Tests for text_indentation module
+===========================
+
+Import the function:
+    >>> text_indentation = __import__('5-text_indentation').text_indentation
+
+--- Normal cases ---
+
+Basic sentence with period:
+    >>> text_indentation("Hello. World")
+    Hello.
+    <BLANKLINE>
+    World
+
+Question mark:
+    >>> text_indentation("How are you? Good")
+    How are you?
+    <BLANKLINE>
+    Good
+
+Colon:
+    >>> text_indentation("Note: something")
+    Note:
+    <BLANKLINE>
+    something
+
+Multiple special characters:
+    >>> text_indentation("Hi. Bye? Ok: Done")
+    Hi.
+    <BLANKLINE>
+    Bye?
+    <BLANKLINE>
+    Ok:
+    <BLANKLINE>
+    Done
+
+No special characters:
+    >>> text_indentation("Hello World")
+    Hello World
+
+Empty string:
+    >>> text_indentation("")
+
+Single special character:
+    >>> text_indentation(".")
+    .
+    <BLANKLINE>
+
+No spaces at beginning of new line (spaces after delimiter are skipped):
+    >>> text_indentation("Hello.   World")
+    Hello.
+    <BLANKLINE>
+    World
+
+Text ending without special character:
+    >>> text_indentation("Iam ruinas videres")
+    Iam ruinas videres
+
+Text with consecutive special characters:
+    >>> text_indentation("Hi.?.:")
+    Hi.
+    <BLANKLINE>
+    ?
+    <BLANKLINE>
+    .
+    <BLANKLINE>
+    :
+    <BLANKLINE>
+
+--- TypeError cases ---
+
+Integer:
+    >>> text_indentation(42)
+    Traceback (most recent call last):
+    TypeError: text must be a string
+
+None:
+    >>> text_indentation(None)
+    Traceback (most recent call last):
+    TypeError: text must be a string
+
+List:
+    >>> text_indentation(["Hello."])
+    Traceback (most recent call last):
+    TypeError: text must be a string
+
+No argument:
+    >>> text_indentation()
+    Traceback (most recent call last):
+    TypeError: text_indentation() missing 1 required positional argument: 'text'
