@@ -1,4 +1,3 @@
--- List all shows and their genres, display NULL if no genre
 SELECT tv_shows.title, tv_genres.name
 FROM tv_shows
 LEFT JOIN tv_shows_genres
